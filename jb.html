@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JB Store</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon"
+    href="https://cdn.discordapp.com/icons/1105390426556477571/3f73b75f32cacfa449fdafca790107fc.webp?size=96">
+  <style>
+    /* Set up variables for consistent colors */
+    :root {
+      --dark-bg: #252525;
+      --light-bg: #f5f5f5;
+      --text-color: #707070;
+      --accent-color: #7c4dff;
+    }
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background-color: rgba(37, 37, 37, 0.7);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  z-index: 1;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 1000;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.2), 0 0 40px rgba(255, 255, 255, 0.1), 0 0 50px rgba(255, 255, 255, 0.05); /* Add a text shadow effect */
+}
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #33404D;
+      color: var(--text-color);
+      background-image: url('https://cdn.discordapp.com/attachments/1106807730875924572/1107780777556590684/image_2023-05-11_225113667.png');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://media.discordapp.net/attachments/988436509424242761/1110616858534629478/image_2023-05-11_225113667.png');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  z-index: -1;
+  filter: blur(5px); 
+
+}
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 0, 255, 0.3); /* Set the background color with reduced opacity */
+  z-index: -1;
+}
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+
+.dashboard-section {
+  /* Adjust the styles for the section to fit the table width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  height: auto;
+  background-color: rgba(25, 25, 25, 0.8);
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 20px;
+  
+}
+
+.dashboard-section::before {
+  /* Adjust the gradient to match the color scheme */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom right, var(--accent-color), #7c4dff);
+  opacity: 0.8;
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.dashboard-section::after {
+  /* Adjust the position of the separator line */
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  border-bottom: none;
+}
+.dashboard-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+
+.social-link {
+  text-decoration: none; /* Remove underlines */
+}
+
+.social-link img {
+  transition: transform 0.2s ease; /* Add animation transition */
+}
+
+.social-link:hover img {
+  transform: scale(1.2); /* Scale the icon on hover */
+}
+
+.stock-table {
+  width: 80%; /* Adjust the width as desired */
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif; /* Change the font to a more modern option */
+  font-size: 14px;
+  background-color: var(--dark-bg);
+  border-radius: 10px;
+  overflow: hidden; /* Ensure the table doesn't overflow and maintain rounded corners */
+}
+
+.stock-table th,
+.stock-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #707070;
+}
+
+.stock-table th {
+  background-color: var(--accent-color);
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.stock-table tbody tr:nth-child(even) {
+  background-color: #252525;
+}
+
+.stock-table tbody tr:hover {
+  background-color: #333333;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div id="overlay"></div>
+
+<div class="dashboard-section">
+  <h1>JB Store</h1>
+  <div class="social-icons">
+    <a href="https://discord.gg/jbstore" target="_blank" class="social-link">
+      <img src="https://www.freepnglogos.com/uploads/discord-logo-png/discord-logo-logodownload-download-logotipos-1.png" alt="Discord" style="width: 40px; height: 40px;">
+    </a>
+    <a href="https://twitter.com/your_twitter_link" target="_blank" class="social-link">
+      <img src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png" alt="Twitter" style="width: 40px; height: 40px;">
+    </a>
+    <a href="https://instagram.com/your_instagram_link" target="_blank" class="social-link">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram" style="width: 40px; height: 40px;">
+    </a>
+  </div>
+</div>
+
+<div class="dashboard-section">
+  <h2>Vehicles</h2>
+  <table class="stock-table">
+    <thead>
+      <tr>
+        <th>Car</th>
+        <th>In Stock</th>
+        <th>Price (Robux)</th>
+        <th>Price (Paypal)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Torpedo</td>
+        <td>6</td>
+        <td>2.5k</td>
+        <td>$15</td>
+      </tr>
+      <tr>
+        <td>Beam</td>
+        <td>3</td>
+        <td>2.1k</td>
+        <td>$13</td>
+      </tr>
+      <tr>
+        <td>Arachnid</td>
+        <td>7</td>
+        <td>2k</td>
+        <td>$11</td>
+      </tr>
+      <tr>
+        <td>Beignet</td>
+        <td>12</td>
+        <td>1.85k</td>
+        <td>$7</td>
+      </tr>
+      <tr>
+        <td>Icebreaker</td>
+        <td>14</td>
+        <td>1.7k</td>
+        <td>$7</td>
+      </tr>
+      <tr>
+        <td>Brulee</td>
+        <td>0</td>
+        <td>400</td>
+        <td>$4</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="dashboard-section">
+  <h2>Cosmetics</h2>
+  <table class="stock-table">
+    <thead>
+      <tr>
+        <th>Cosmetic</th>
+        <th>In Stock</th>
+        <th>Price (Robux)</th>
+        <th>Price (USD)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Checker</td>
+        <td>12</td>
+        <td>1.5k</td>
+        <td>$10</td>
+      </tr>
+      <tr>
+        <td>Snowstorm</td>
+        <td>12</td>
+        <td>700</td>
+        <td>$5</td>
+      </tr>
+      <tr>
+        <td>Spinner</td>
+        <td>7</td>
+        <td>3k</td>
+        <td>$18</td>
+      </tr>
+      <tr>
+        <td>Void rim</td>
+        <td>2</td>
+        <td>1.8k</td>
+        <td>$11</td>
+      </tr>
+      <tr>
+        <td>Hypershift</td>
+        <td>1</td>
+        <td>15k</td>
+        <td>$70</td>
+      </tr>
+      <tr>
+        <td>Duped Hypershift</td>
+        <td>3</td>
+        <td>5k</td>
+        <td>$30</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class = "dashboard-section">
+  <h2>Terms of Service</h2>
+  <p>
+
+    <b>Purchasing:</b>
+    There are no refunds under any circumstances! Accusing me or any of our staff of "scamming" or any malicious activity that has the potential to damage our reputation (without credible evidence) will result in an immediate ban. 
+    Upon purchasing, please send a screen-shot of proof. Please provide your roblox username and discord account id, failure to do this may result in punishment.
+    Important: Once you obtain the buyer role, you are obligated to give a review for Seniuxm. Failure to do so may result in being blacklisted.
+    <br><br>
+    <b>Other rules:</b>
+    Do not spam ping any of the discord server staff. If we don't respond, we are most likely sleeping, or at school.
+
+  </p>
+  
+</div>
+
+
+</body>
+
+</html>
